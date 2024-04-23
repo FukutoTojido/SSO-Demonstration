@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100vw;
+            height: 100vh;
+
+            background-color: #292221;
+            color: white;
+
+            font-family: sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;   
+        }
+
+        #form {
+            padding: 20px;
+            width: 400px;
+
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            background-color: #403432;
+            border-radius: 20px;
+        }
+
+        label {
+            font-weight: 700;
+        }
+
+        input {
+            appearance: none;
+
+            font-size: 1rem;
+            padding: 10px;
+
+            background-color: #292221;
+            border-radius: 5px;
+
+            border: none;
+            color: white;
+
+            font-family: sans-serif;
+        }
+
+        button {
+            appearance: none;
+            padding: 10px;
+
+            background: #292221;
+            font-size: 1rem;
+            color: white;
+            
+            border: none;
+            border-radius: 5px;
+
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form" action="/login" method="post">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" />
+        <input type="hidden" id="redirectUrl" name="redirectUrl" >
+        <button type="submit">Login</button>
+    </form>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const reurl = urlParams.get("redirectUrl");
+
+        function handleSubmit(event) {
+            const redirectUrl = document.querySelector("#redirectUrl");
+            redirectUrl.value = reurl;
+        }
+
+        const form = document.querySelector("#form");
+        form.addEventListener("submit", handleSubmit);
+    </script>
+</body>
+
+</html>
